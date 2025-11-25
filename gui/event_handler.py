@@ -28,6 +28,24 @@ class EventHandler:
             except Exception as e:
                 self.window[STATUS_KEY].update(f'Error loading {selected_model}: {e}', text_color='red')
                 sg.popup_error(f"Error loading model: {e}")
+        
+    def handle_image_selection(self,file_path):
+        if file_path and os.path.exists(file_path):
+            file_name = os.path.basename(file_path)
+            self.window[STATUS_KEY].update(f'Image loaded : {file_name} READY', text_color='green')
+        elif file_path:
+            self.window[STATUS_KEY].update('Error: Selected file is not valid or doesn\'t exist.', text_color='red')
+        else:
+            self.window[STATUS_KEY].update('Select an image file')
+
+    def handle_video_selection(self,file_path):
+        if file_path and os.path.exists(file_path):
+            file_name = os.path.basename(file_path)
+            self.window[STATUS_KEY].update(f'Video loaded : {file_name} READY', text_color='green')
+        elif file_path:
+            self.window[STATUS_KEY].update('Error: Selected file is not valid or doesn\'t exist.', text_color='red')
+        else:
+            self.window[STATUS_KEY].update('Select an video file')
 
     def handle_run_image(self, file_path): 
         if not file_path or not os.path.exists(file_path):
@@ -68,6 +86,12 @@ class EventHandler:
     def handle(self,event,values):
         if event == MODEL_SELECT_KEY:
             self.handle_model_selection(values[MODEL_SELECT_KEY])
+
+        elif event == IMAGE_INPUT_KEY:
+            self.handle_image_selection(values[IMAGE_INPUT_KEY])
+
+        elif event == VIDEO_INPUT_KEY:
+            self.handle_video_selection(values[VIDEO_INPUT_KEY])
         
         elif event == RUN_IMAGE_KEY:
             self.handle_run_image(values[IMAGE_INPUT_KEY])

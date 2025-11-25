@@ -6,7 +6,7 @@ sg.theme(GUI_THEME)
 def create_layout():
     MODEL = ['yolo11n','yolo11s','yolo11m']
     control_panel_column = [
-        [sg.Text('Deteksi Yolo11', font=('Helvetica', 37, 'bold'),justification='center', expand_x=True, pad=(0,30))],
+        [sg.Text('Deteksi Retail Yolo11', font=('Helvetica', 37, 'bold'),justification='center', expand_x=True, pad=(0,30))],
 
         [sg.Text('Select Model:', size=(15, 1)), 
          sg.Combo(
