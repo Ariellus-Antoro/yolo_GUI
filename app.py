@@ -11,15 +11,6 @@ STATUS_KEY = '-STATUS-'
 def main():
     sg.theme(GUI_THEME)
     window = sg.Window(WINDOW_TITLE, create_layout(), finalize=True)
-
-    window.extend_layout(
-        window['-CONTROL_COLUMN-'], 
-        [[
-            sg.Text('Status: Initializing...', 
-                    size=(40, 1), 
-                    key=STATUS_KEY, 
-                    relief=sg.RELIEF_SUNKEN)
-                    ]])
     
     try:
         selected_model_path = MODELS.get(window['-MODEL_SELECT-'].get())
